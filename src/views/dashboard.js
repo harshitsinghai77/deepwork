@@ -10,20 +10,20 @@ import Footer from "../components/Footer";
 function Dashboard() {
   const globalState = useContext(store);
   const mute = globalState.state.audioMute || false;
-  const myAudio = globalState.state.myAudio;
+  const myAudio = globalState.state.myAudio || {};
 
   const onMuteClickToggle = () => {
     const { dispatch } = globalState;
     dispatch({ type: "toggle mute" });
 
-    for (const [key, audio] of Object.entries(myAudio)) {
+    for (const audio of Object.values(myAudio)) {
       audio.muted = !audio.muted;
     }
   };
 
   const onMusicStop = () => {
     if (myAudio) {
-      for (const [key, audio] of Object.entries(myAudio)) {
+      for (const audio of Object.values(myAudio)) {
         audio.muted = true;
       }
     }

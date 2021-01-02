@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 
 import { store } from "../store/store";
 import { webNotifyMe } from "../js/notification";
-import { numberToMinute, numberToSeconds } from "../js/utils";
 import TitleComponent from "./TitleComponent";
 import AlertBox from "./Alertbox";
 
@@ -38,8 +37,8 @@ const Timer = (props) => {
           return;
         }
 
-        const secondCounter = numberToSeconds(counter);
-        const minuteCounter = numberToMinute(counter);
+        const secondCounter = counter % 60;
+        const minuteCounter = Math.floor(counter / 60);
         setSecond(secondCounter);
         setMinute(minuteCounter);
         setCounter((counter) => counter - 1);

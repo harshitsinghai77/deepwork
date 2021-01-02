@@ -12,11 +12,3 @@ export function LoadSound() {
 
   return audioDict;
 }
-
-export function numberToMinute(num) {
-  return Math.floor(num / 60);
-}
-
-export function numberToSeconds(num) {
-  return num % 60;
-}
