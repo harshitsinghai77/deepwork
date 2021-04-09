@@ -7,7 +7,7 @@ export default function SEO({ title }) {
 
   return (
     <Head>
-      <title>{title || siteMetadata.title}</title>
+      <title>{siteMetadata.title}</title>
       <meta name="description" content={metaDescription} />
       <meta property="og:type" content="website" />
       <meta name="og:title" property="og:title" content={title} />
@@ -25,6 +25,11 @@ export default function SEO({ title }) {
       <meta name="medium:creator" content={siteMetadata.social.medium} />
       <link rel="icon" type="image/png" href="/static/favicon.ico" />
       <link rel="apple-touch-icon" href="/static/favicon.ico" />
+
+      <link href="./fonts/raleway-v17-latin-500.woff2" rel="stylesheet" />
+      <link href="./fonts/raleway-v17-latin-600.woff2" rel="stylesheet" />
+      <link href="./fonts/raleway-v17-latin-700.woff2" rel="stylesheet" />
+      <link href="./fonts/raleway-v17-latin-regular.woff2" rel="stylesheet" />
     </Head>
   );
 }

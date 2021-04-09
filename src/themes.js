@@ -8,7 +8,7 @@ export const theme = {
   },
   rangeInput: {
     thumb: {
-      color: "rgb(255, 255, 255)",
+      color: "white",
       extend: {
         height: "14px",
         width: "14px",
@@ -17,7 +17,7 @@ export const theme = {
       },
     },
     track: {
-      color: "rgb(255, 255, 255)",
+      color: "white",
       height: "2px",
     },
     extend: {
@@ -33,6 +33,20 @@ export const theme = {
       border: {
         color: themePrimaryColor,
       },
+    },
+  },
+  table: {
+    body: {
+      align: "start",
+      pad: { horizontal: "large", vertical: "small" },
+      border: "horizontal",
+    },
+    header: {
+      align: "start",
+      border: "bottom",
+      fill: "horizontal",
+      pad: { horizontal: "large", vertical: "xsmall" },
+      verticalAlign: "bottom",
     },
   },
 };

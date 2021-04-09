@@ -11,14 +11,15 @@ module.exports = {
       lg: "976px",
       xl: "1440px",
     },
-    colors: {
-      secondary: colors.secondary,
-    },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
       serif: ["Merriweather", "serif"],
     },
     extend: {
+      colors: {
+        "custom-secondary": colors.secondary,
+        "custom-text-primary": colors.textPrimary,
+      },
       spacing: {
         128: "32rem",
         144: "36rem",

@@ -1,47 +1,51 @@
-import { useContext } from "react";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+import { SetAudio, ToggleMute } from "../actions/noisliActions";
 
-import { store } from "../store/store";
-import Header from "../components/Header";
-import Timer from "../components/Timer";
+import { LoadSound } from "../js/utils";
+// import Header from "../components/Header";
+// import Timer from "../components/Timer";
 import Sounds from "../components/Sounds";
 import Introduction from "../components/Introduction";
-import Footer from "../components/Footer";
+import "../css/noisly.css";
 
-function Dashboard() {
-  const globalState = useContext(store);
-  const mute = globalState.state.audioMute || false;
-  const myAudio = globalState.state.myAudio || {};
+function Dashboard(props) {
+  const { SetAudio, ToggleMute, audio, audioMute } = props;
+
+  useEffect(() => {
+    const audioDict = LoadSound();
+    SetAudio(audioDict);
+  }, []);
 
   const onMuteClickToggle = () => {
-    const { dispatch } = globalState;
-    dispatch({ type: "toggle mute" });
-
-    for (const audio of Object.values(myAudio)) {
-      audio.muted = !audio.muted;
+    ToggleMute();
+    for (const a of Object.values(audio)) {
+      a.muted = !a.muted;
     }
   };
 
   const onMusicStop = () => {
-    if (myAudio) {
-      for (const audio of Object.values(myAudio)) {
-        audio.muted = true;
+    if (audio) {
+      for (const a of Object.values(audio)) {
+        a.muted = true;
       }
     }
   };
 
   return (
     <div id="#dashboard" className="dashboard">
-      <Header>
+      {/* <Header>
         <Timer onMusicStop={onMusicStop} />
-      </Header>
+      </Header> */}
       <div className="flex-container">
         <h1>Noisli</h1>
 
         <Introduction />
-
         <button
           className={
-            mute
+            audioMute
               ? "fa fa-volume-off active btn-mute dashboard-button"
               : "fa fa-volume-up active btn-mute dashboard-button"
           }
@@ -50,16 +54,29 @@ function Dashboard() {
         ></button>
 
         <Sounds />
-        {/* <div id="buttons" className="flex-item">
-        <button id="btn-random">Random</button>
-        <button id="btn-productivity">Productivity</button>
-        <button id="dbtn-relax">Relax</button>
-      </div> */}
-
-        <Footer />
       </div>
     </div>
   );
 }
 
-export default Dashboard;
+function mapStateToProps(state) {
+  return {
+    audio: state.audio,
+    audioMute: state.audioMute,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      SetAudio,
+      ToggleMute,
+    },
+    dispatch
+  );
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Dashboard));

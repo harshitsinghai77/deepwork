@@ -1,31 +1,32 @@
-import { useContext } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+import { ToggleImages } from "../actions/noisliActions";
 import { RangeInput } from "grommet";
-import { store } from "../store/store";
-import { Event } from "../tracking/tracking";
+
+// import { Event } from "../tracking/tracking";
 import SoundData from "../data/sounds.json";
 
-function Sounds() {
-  const globalState = useContext(store);
-  const { myAudio, myImages } = globalState.state;
+function Sounds(props) {
+  const { ToggleImages, audio, audioImages } = props;
 
+  console.log(audioImages);
   const onImageClick = (title, dataKey) => {
-    Event("Sounds", "Selected", title);
-
-    const { dispatch } = globalState;
-    dispatch({ type: "toggle activate image", title });
-
+    // Event("Sounds", "Selected", title);
+    console.log("title", title);
+    ToggleImages(title);
     playAudio(dataKey);
   };
 
   const playAudio = (datakey) => {
-    const audio = myAudio[datakey];
-    if (audio) audio.paused ? audio.play() : audio.pause();
+    const aud = audio[datakey];
+    if (aud) aud.paused ? aud.play() : aud.pause();
   };
 
   const onSliderChange = (event, dataKey) => {
     const { value, min, max } = event.target;
-    const audio = myAudio[dataKey];
-    if (audio) audio.volume = value / (max - min);
+    const aud = audio[dataKey];
+    if (aud) aud.volume = value / (max - min);
   };
 
   return (
@@ -43,13 +44,13 @@ function Sounds() {
               alt={title}
               title={title}
               onClick={() => onImageClick(title, dataKey)}
-              className={myImages[title] ? "active sound-img" : "sound-img"}
+              className={audioImages[title] ? "active sound-img" : "sound-img"}
             />
             <RangeInput
               min="0"
               max="100"
               className={
-                myImages[title]
+                audioImages[title]
                   ? "dashboard-input slider-active "
                   : "dashboard-input"
               }
@@ -73,4 +74,20 @@ function Sounds() {
   );
 }
 
-export default Sounds;
+function mapStateToProps(state) {
+  return {
+    audio: state.audio,
+    audioImages: state.audioImages,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      ToggleImages,
+    },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Sounds));

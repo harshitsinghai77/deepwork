@@ -3,17 +3,14 @@ import ReactDOM from "react-dom";
 import { Grommet } from "grommet";
 
 import App from "./App";
-import { StateProvider } from "./store/store";
 import { theme } from "./themes";
 import reportWebVitals from "./reportWebVitals";
-import "./css/noisly.css";
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Grommet theme={theme}>
-      <StateProvider>
-        <App />
-      </StateProvider>
+    <Grommet theme={theme} className="min-h-screen">
+      <App />
     </Grommet>
   </React.StrictMode>,
   document.getElementById("root")

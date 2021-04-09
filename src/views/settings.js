@@ -71,7 +71,7 @@ const Settings = () => {
         direction="row"
         alignSelf="stretch"
         justify="between"
-        gap="40%"
+        gap="60%"
       >
         <ParagraphTitle text="Time" />
         <MaskedInput
@@ -140,7 +140,7 @@ const Settings = () => {
         direction="row"
         alignSelf="stretch"
         justify="between"
-        gap="40%"
+        gap="60%"
       >
         <ParagraphTitle text="Sessions" />
         <TextInput
@@ -166,7 +166,7 @@ const Settings = () => {
         pad="medium"
         responsive={true}
         margin="auto"
-        width="medium"
+        width="large"
         style={{ color: "rgb(102, 102, 102)" }}
       >
         <Title title="Settings" color alignSelf="start" />

@@ -4,14 +4,13 @@ import LandingPage from "../components/landing-page";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <SEO />
       <Head>
-        <title>Create Next App</title>
+        <title>Habitt</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <LandingPage />
-    </div>
+    </>
   );
 }

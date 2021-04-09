@@ -11,7 +11,11 @@ export default function Section1() {
           <p className="max-w-xl mt-9 text-xl font-semibold leading-10">
             Life can feel overwhelming, but it doesn’t have to. Habitt lets you
             keep track of your productivity, so you can be more produtive, get
-            all the insights and enjoy more peace of mind along the way.
+            all the insights and enjoy more peace of mind along the way. Even
+            the best tool will not improve your productivity considerably if you
+            don’t change your daily routines the tool is embedded in, just as
+            the fastest car won’t help you much if you don’t have proper roads
+            to drive it on.
           </p>
         </div>
       </div>
